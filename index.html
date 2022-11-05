@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Rock Paper Scissors</title>
+        <style>
+            html {
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>RPS</h1>
+        <p>Click the play button to play Rock Paper Scissors.</p>
+
+        <button id="play">Play</button>
+
+        <p id="result"></p>
+    </body>
+    <script type="text/javascript">
+
+        var play = document.getElementById('play');
+        
+        play.onclick = function(){
+        
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "rps.js"; 
+            document.getElementsByTagName("head")[0].appendChild(script);
+            return false;
+        }
+        
+        
+    </script>
+    
+</html> 
