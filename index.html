@@ -7,30 +7,44 @@
             html {
                 font-family: sans-serif;
             }
+            .gameover {
+                font-weight: bold;
+            }
+            .gameScore {
+                color:  #0062ff ;
+            }
         </style>
     </head>
     <body>
         <h1>RPS</h1>
-        <p>Click the play button to play Rock Paper Scissors.</p>
+        <p>Choose rock, paper, or scissors.  First to 5 wins!</p>
 
-        <button id="play">Play</button>
-
-        <p id="result"></p>
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+        <div id="container">
+            <br/>
+            <div class="gameover">
+            </div>
+            <br/>
+            <div class="gameScore">
+            </div>
+            <br/>
+        </div>
+        <br/>
     </body>
-    <script type="text/javascript">
+    <script src="rps.js">
 
-        var play = document.getElementById('play');
+        // var play = document.getElementById('play');
         
-        play.onclick = function(){
+        // play.onclick = function(){
         
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "rps.js"; 
-            document.getElementsByTagName("head")[0].appendChild(script);
-            return false;
-        }
-        
-        
+        //     var script = document.createElement("script");
+        //     script.type = "text/javascript";
+        //     script.src = "rps.js"; 
+        //     document.getElementsByTagName("head")[0].appendChild(script);
+        //     return false;
+        // }
     </script>
     
 </html> 

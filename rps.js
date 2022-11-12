@@ -3,85 +3,82 @@ function getComputerChoice(){
     randomInt = Math.floor(Math.random()*100);
     let computerChoice = '';
     if (randomInt <= 33) {
-        computerChoice = 'Rock';
+        computerChoice = 'rock';
     }
     else if (randomInt > 33 && randomInt <= 66) {
-        computerChoice = 'Paper';
+        computerChoice = 'paper';
     }
     else {
-        computerChoice = 'Scissors';
+        computerChoice = 'scissors';
     }
     return computerChoice;
 }
 
-/*
-Rock beats Scissors
-Scissors beats Paper
-Paper beats Rock
-if they're same, try again - draw
-*/
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    playerSelection = capitalizeFirstLetter(playerSelection);
+function playRound(e) {
     let result = '';
-    if ((playerSelection != 'Rock') && (playerSelection != 'Scissors') &&
-        (playerSelection != 'Paper')){
-        result = "You can't use that. Try entering Rock, Paper, or Scissors.";
+    const computerSelection = getComputerChoice();
+    //const newline = '\r\n'
+    playerSelection = this.classList.value;
+
+    if (playerScore === 5){
+        result = 'Final score reached. You won!!! 😀';
+        gameover.textContent = result;
+        gameover.setAttribute('style', 'color: #2fa745')
+        return result;
+    } 
+    else if (computerScore === 5){
+        result = 'Final score reached. Computer won 😔';
+        gameover.textContent = result;
+        gameover.setAttribute('style', 'color: #e61717')
+        return result;
     }
-    else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') ||
-            (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
-            (playerSelection === 'Paper' && computerSelection === 'Rock')){
-                result = `You chose ${playerSelection}. The computer\'s choice was ${computerSelection}.
+    else {
+        console.log(playerSelection);
+        console.log(computerSelection);
+        if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
+            (playerSelection === 'scissors' && computerSelection === 'paper') ||
+            (playerSelection === 'paper' && computerSelection === 'rock')){
+                result = `Game ${gameCount}: You chose ${playerSelection}. The computer\'s choice was ${computerSelection}.
                             ${playerSelection} beats ${computerSelection}. You win!`;
                 playerScore = playerScore+1;
+        }
+        else if ((computerSelection === 'rock' && playerSelection === 'scissors') ||
+                (computerSelection === 'scissors' && playerSelection === 'paper') ||
+                (computerSelection === 'paper' && playerSelection === 'rock')){
+                    result = `Game ${gameCount}: You chose ${playerSelection}. The computer\'s choice was ${computerSelection}.
+                                ${computerSelection} beats ${playerSelection}. You lose!`;
+                    computerScore = computerScore+1;
+        }
+        else {
+            result = `Game ${gameCount}: You chose ${playerSelection}. 
+                        The computer also chose ${computerSelection}. T'was a draw!`;
+        }      
     }
-    else if ((computerSelection === 'Rock' && playerSelection === 'Scissors') ||
-            (computerSelection === 'Scissors' && playerSelection === 'Paper') ||
-            (computerSelection === 'Paper' && playerSelection === 'Rock')){
-                result = `You chose ${playerSelection}. The computer\'s choice was ${computerSelection}.
-                            ${computerSelection} beats ${playerSelection}. You lose!`;
-                computerScore = computerScore+1;
-    }
-    else {
-        result = `You chose ${playerSelection}. 
-                    The computer also chose ${computerSelection}. T'was a draw!`;
-    }
+    gameCount++;
     
+    const roundDiv = document.createElement('div');
+    
+    roundDiv.classList.add('score');
+    roundDiv.setAttribute('style', 'font-size: 80%')
+    roundDiv.textContent = result;
+    container.appendChild(roundDiv);
+
+    gameScore.textContent = `Your score: ${playerScore} Computer's score: ${computerScore}`;
+
     return result; 
-}
-
-function game(playerSelection, computerSelection){
-    
-    let score = '';
-    for (let i = 0; i < 5; i++) {
-        var playerSelection = prompt(`Game ${i+1} of 5: Please enter Rock, Paper, or Scissors`, "Rock");
-        var computerSelection = getComputerChoice();
-        //console.log(`Game ${i+1}: `+ playRound(playerSelection, computerSelection));
-        document.getElementById("result").innerHTML += `Game ${i+1}: `+
-            playRound(playerSelection, computerSelection) + '<br><br>';
-        score = `Current Score: You scored ${playerScore} 
-                and the computer scored ${computerScore} <br><br>`;
-    }
-    if (playerScore > computerScore) {
-        document.getElementById("result").innerHTML += `You won ${playerScore} times.
-          Computer won ${computerScore}. You won the best of 5!<br><br>`;
-    }
-    else if (playerScore < computerScore) {
-        document.getElementById("result").innerHTML += `You won ${playerScore} times.
-          Computer won ${computerScore}. You lost the best of 5 :( <br><br>`;
-    }
-    else {
-        document.getElementById("result").innerHTML += `You won ${playerScore} times.
-          Computer won ${computerScore}. It was a tie<br><br>`;
-    }
-
 }
 
 var playerScore = 0;
 var computerScore = 0;
-console.log(game())
+var gameCount = 1;
+
+const container = document.querySelector('#container');
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+const gameScore = document.querySelector('.gameScore');
+const gameover = document.querySelector('.gameover');
+
+rock.addEventListener('click', playRound);
+paper.addEventListener('click', playRound);
+scissors.addEventListener('click', playRound);
