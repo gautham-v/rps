@@ -3,37 +3,28 @@
     <head>
         <meta charset="utf-8">
         <title>Rock Paper Scissors</title>
-        <style>
-            html {
-                font-family: sans-serif;
-            }
-            .gameover {
-                font-weight: bold;
-            }
-            .gameScore {
-                color:  #0062ff ;
-            }
-        </style>
+        <link href="styles.css" rel="stylesheet">
     </head>
     <body>
         <h1>RPS</h1>
-        <p>Choose rock, paper, or scissors.  First to 5 wins!</p>
+        <div class="content">
+            <p>Choose rock, paper, or scissors.  First to 5 wins!</p>
 
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
-        <div id="container">
-            <br/>
-            <div class="gameover">
-            </div>
-            <br/>
-            <div class="gameScore">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissors">Scissors</button>
+            <div id="container">
+                <br/>
+                <div class="gameover">
+                </div>
+                <br/>
+                <div class="gameScore">
+                </div>
+                <br/>
             </div>
             <br/>
         </div>
-        <br/>
     </body>
     <script src="rps.js">
     </script>
-    
 </html> 

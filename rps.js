@@ -1,4 +1,3 @@
-
 function getComputerChoice(){
     randomInt = Math.floor(Math.random()*100);
     let computerChoice = '';
@@ -57,7 +56,7 @@ function playRound(e) {
     gameCount++;
     
     const roundDiv = document.createElement('div');
-    
+
     roundDiv.classList.add('score');
     roundDiv.setAttribute('style', 'font-size: 80%')
     roundDiv.textContent = result;
