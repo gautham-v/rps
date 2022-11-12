@@ -22,7 +22,7 @@ function playRound(e) {
     if (playerScore === 5){
         result = 'Final score reached. You won!!! 😀';
         gameover.textContent = result;
-        gameover.setAttribute('style', 'color: #2fa745')
+        gameover.setAttribute('style', 'color: #2fa745');
         return result;
     } 
     else if (computerScore === 5){
